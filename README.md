@@ -1,38 +1,34 @@
+Passo a passo
+1. Clonar o Repositório de Configuração
+Clone o repositório que contém a configuração Docker:
 
-# Setup Docker Para Projetos Laravel (8, 9, 10 ou 11)
-[Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
 
-### Passo a passo
-Clone Repositório
-```sh
 git clone https://github.com/especializati/setup-docker-laravel.git
-```
+2. Clonar o Repositório do Laravel
+Clone os arquivos do Laravel para o diretório app-laravel:
 
-Clone os Arquivos do Laravel
-```sh
+
 git clone https://github.com/laravel/laravel.git app-laravel
-```
+3. Copiar Arquivos de Configuração
+Copie os arquivos docker-compose.yml, Dockerfile e o diretório docker/ para o seu projeto Laravel:
 
+sh
 
-Copie os arquivos docker-compose.yml, Dockerfile e o diretório docker/ para o seu projeto
-```sh
 cp -rf setup-docker-laravel/* app-laravel/
-```
-```sh
 cd app-laravel/
-```
+4. Criar o Arquivo .env
+Crie uma cópia do arquivo .env.example e renomeie para .env:
 
+sh
 
-Crie o Arquivo .env
-```sh
 cp .env.example .env
-```
+5. Atualizar Variáveis de Ambiente
+Atualize as variáveis de ambiente no arquivo .env conforme necessário:
 
+dosini
 
-Atualize as variáveis de ambiente do arquivo .env
-```dosini
-APP_NAME="Especializa Ti"
-APP_URL=http://localhost:8989
+APP_NAME="First Decision"
+APP_URL=http://localhost:4200
 
 DB_CONNECTION=mysql
 DB_HOST=db
@@ -48,32 +44,27 @@ SESSION_DRIVER=redis
 REDIS_HOST=redis
 REDIS_PASSWORD=null
 REDIS_PORT=6379
-```
+6. Subir os Containers
+Suba os containers do projeto:
 
+sh
 
-Suba os containers do projeto
-```sh
 docker-compose up -d
-```
+7. Acessar o Container da Aplicação
+Acesse o container da aplicação para executar comandos do Artisan:
 
+sh
 
-Acessar o container
-```sh
 docker-compose exec app bash
-```
+8. Instalar Dependências do Projeto
+Dentro do container, instale as dependências do projeto com o Composer:
 
-
-Instalar as dependências do projeto
-```sh
+sh
 composer install
-```
+9. Gerar a Chave do Projeto Laravel
+Ainda dentro do container, gere a chave do projeto Laravel:
 
-
-Gerar a key do projeto Laravel
-```sh
+sh
 php artisan key:generate
-```
-
-
-Acessar o projeto
-[http://localhost:8989](http://localhost:8989)
+10. Acessar o Projeto
+Abra seu navegador e acesse o projeto em http://localhost:4200/
